@@ -1,4 +1,5 @@
-# Curso da Linguagem Python
-## _Primeiros códigos_
+# # Curso Python
+Resolução de questões da linguagem Python originárias de listas de questões aplicadas em sala de aula ou de plataformas online, foi separado em diferentes arquivos para facilitar a visualização.
 
-Questões de Python aplicadas em sala ou originadas em plataformas de resolução de questões online.
+- Listas de questões
+- Questões da plataforma Beecrownd
