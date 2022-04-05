@@ -10,11 +10,14 @@
 valorHora = float(input('Valor recebido por hora de trabalho: '))
 horasMes = float(input('Horas trabalhadas no mês: '))
 salarioBruto = valorHora*horasMes
-impostoDeRenda = salarioBruto-(salarioBruto*0.89)
-inss = salarioBruto-(salarioBruto*0.92)
-sindicato = salarioBruto-(salarioBruto*0.95)
-salarioLiquido = salarioBruto-(impostoDeRenda+inss+sindicato)
-print('Valor do salário Bruto R$ {:.2f}\nValor do Imposto de Renda R$ {:.2f}\nValor do  INSS R$ {:.2f}\nValor do Sindicato R$ {:.2f}\nSalário Líquido R$ {:.2f}'.format(salarioBruto,impostoDeRenda,inss,sindicato,salarioLiquido))
+inss = salarioBruto*0.08
+sindicato = salarioBruto*0.05
+deducoes = inss+sindicato
+salarioLiquidoTemp = salarioBruto-deducoes
+impostoDeRenda = salarioLiquidoTemp*0.11
+salarioLiquido = salarioLiquidoTemp-impostoDeRenda
+
+print('Valor do salário Bruto R$ {:.2f}\nValor do  INSS R$ {:.2f}\nValor do Sindicato R$ {:.2f}\nSalário Líquido R$ {:.2f}'.format(salarioBruto,inss,sindicato,salarioLiquido))
 
 
 
