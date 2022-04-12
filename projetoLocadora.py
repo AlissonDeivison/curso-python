@@ -66,13 +66,13 @@ while True:
                 elif filmeEscolhido == 3:
                         filmesLocados.append(filmesAcao[2])
                 elif filmeEscolhido == 3:
-                        filmesLocados.append(filmesAcao[2])
-                elif filmeEscolhido == 4:
                         filmesLocados.append(filmesAcao[3])
-                elif filmeEscolhido == 5:
+                elif filmeEscolhido == 4:
                         filmesLocados.append(filmesAcao[4])
-                elif filmeEscolhido == 6:
+                elif filmeEscolhido == 5:
                         filmesLocados.append(filmesAcao[5])
+                elif filmeEscolhido == 6:
+                        filmesLocados.append(filmesAcao[6])
 
             elif escolhaCategoria == 2:
                 n = 0
@@ -95,13 +95,13 @@ while True:
                 elif filmeEscolhido == 3:
                     filmesLocados.append(filmesAventura[2])
                 elif filmeEscolhido == 3:
-                    filmesLocados.append(filmesAventura[2])
-                elif filmeEscolhido == 4:
                     filmesLocados.append(filmesAventura[3])
-                elif filmeEscolhido == 5:
+                elif filmeEscolhido == 4:
                     filmesLocados.append(filmesAventura[4])
-                elif filmeEscolhido == 6:
+                elif filmeEscolhido == 5:
                     filmesLocados.append(filmesAventura[5])
+                elif filmeEscolhido == 6:
+                    filmesLocados.append(filmesAventura[6])
             elif escolhaCategoria == 3:
                 n = 0
                 print('Qual filme deseja locar?')
@@ -124,13 +124,13 @@ while True:
                 elif filmeEscolhido == 3:
                     filmesLocados.append(filmesFantasia[2])
                 elif filmeEscolhido == 3:
-                    filmesLocados.append(filmesFantasia[2])
-                elif filmeEscolhido == 4:
                     filmesLocados.append(filmesFantasia[3])
-                elif filmeEscolhido == 5:
+                elif filmeEscolhido == 4:
                     filmesLocados.append(filmesFantasia[4])
-                elif filmeEscolhido == 6:
+                elif filmeEscolhido == 5:
                     filmesLocados.append(filmesFantasia[5])
+                elif filmeEscolhido == 6:
+                    filmesLocados.append(filmesFantasia[6])
     elif opcao == 3:
         print('Lista de filmes locados: ')
         l = 0
