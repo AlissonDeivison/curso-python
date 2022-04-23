@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #----------------------------------------------------------------------------
 # Created By  : Alisson Deivison Silva Pereira
-# Created Date: 20/04/2022
-# version ='1.0'
+# Created Date: 23/04/2022
+# version ='2.0'
 # ---------------------------------------------------------------------------
 """ Sistema de Ouvidoria da Universidade ABC """
 # ---------------------------------------------------------------------------
@@ -67,7 +67,6 @@ while True:
                     if categoryVerification == 'Elogio':
                         print(f'ID do chamado: {brokenManifestation[0]} - Usuário: {brokenManifestation[1]} - Categoria da manifestação: {brokenManifestation[2]} - Manifestação: {brokenManifestation[3]}')
         elif userOption == 5: #Opção 5 do menu - Criar nova manifestação
-            # newDemonstration = []
             newDemonstration = ''
             print('Para criar uma nova manifestação você deve  informar seu nome, escolher uma categoria e em seguida digitar  a sua manifestação')
             id = len(demonstrationsList)+1
@@ -98,6 +97,7 @@ while True:
                     if protocolEntry == numberProtocol:
                         print(f'ID do chamado: {brokenManifestation[0]}\nUsuário: {brokenManifestation[1]}\nCategoria da manifestação: {brokenManifestation[2]}\nManifestação: {brokenManifestation[3]}')
                     else:
+                        print('Número de protocolo não existente na base de dados')
                         continue
     elif (userOption) == 7:
         print('Obrigado por usar nossos sistemas')
