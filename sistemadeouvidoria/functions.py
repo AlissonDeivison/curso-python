@@ -8,6 +8,7 @@ def menu():
                  '7: Sair']
     for i in main_menu:
         print(i)
+        
 def saudacao():
     import time
     time = time.strftime('%H:%M')
@@ -28,45 +29,35 @@ def case1(demonstrationList):
     if len(demonstrationList) == 0:
         print('Nenhuma manifestação registrada até o momento')
     else:
-        for item in range(len(demonstrationList)):
+        for item in (demonstrationList):
             print(
-                f'[{item + 1}] - N° do protocolo: {demonstrationList[item].id} | Nome: {demonstrationList[item].nick} | Tipo: {demonstrationList[item].type} | Manifestação: {demonstrationList[item].manifestation}')
+                f'N° do protocolo: {item.id} | Nome: {item.nick} | Tipo: {item.type} | Manifestação: {item.manifestation}')
 
 def case2(demonstrationList):
     if len(demonstrationList) == 0:
         print('Nenhuma manifestação registrada até o momento')
     else:
-        for item in range(len(demonstrationList)):
-            if demonstrationList[item].type == 'Sugestão':
+        for item in (demonstrationList):
+            if item.type == 'Sugestão':
                 print(
-                    f'[{item + 1}] - N° do protocolo: {demonstrationList[item].id} | Nome: {demonstrationList[item].nick} | Tipo: {demonstrationList[item].type} | Manifestação: {demonstrationList[item].manifestation}')
+                    f'N° do protocolo: {item.id} | Nome: {item.nick} | Tipo: {item.type} | Manifestação: {item.manifestation}')
 
 
 def case3(demonstrationList):
     if len(demonstrationList) == 0:
         print('Nenhuma manifestação registrada até o momento')
     else:
-        for item in range(len(demonstrationList)):
-            if demonstrationList[item].type == 'Reclamação':
+        for item in (demonstrationList):
+            if item.type == 'Reclamação':
                 print(
-                    f'[{item + 1}] - N° do protocolo: {demonstrationList[item].id} | Nome: {demonstrationList[item].nick} | Tipo: {demonstrationList[item].type} | Manifestação: {demonstrationList[item].manifestation}')
+                    f'N° do protocolo: {item.id} | Nome: {item.nick} | Tipo: {item.type} | Manifestação: {item.manifestation}')
+
 def case4(demonstrationList):
     if len(demonstrationList) == 0:
         print('Nenhuma manifestação registrada até o momento')
     else:
-        for item in range(len(demonstrationList)):
-            if demonstrationList[item].type == 'Elogio':
+        for item in (demonstrationList):
+            if item.type == 'Elogio':
                 print(
-                    f'[{item + 1}] - N° do protocolo: {demonstrationList[item].id} | Nome: {demonstrationList[item].nick} | Tipo: {demonstrationList[item].type} | Manifestação: {demonstrationList[item].manifestation}')
+                    f'N° do protocolo: {item.id} | Nome: {item.nick} | Tipo: {item.type} | Manifestação: {item.manifestation}')
 
-def case6(demonstrationList):
-    if len(demonstrationList) == 0:
-        print('Nenhuma manifestação registrada até o momento')
-    else:
-        numberProtocol = int(input('Informe o número do protocolo: '))
-        if numberProtocol > len(demonstrationList):
-            print('Número de protocolo não existe')
-        else:
-            for item in range(len(demonstrationList)):
-                if demonstrationList[item].id == numberProtocol:
-                    print(f'N° do protocolo: {demonstrationList[item].id}\nNome: {demonstrationList[item].nick}\nTipo: {demonstrationList[item].type}\nManifestação: {demonstrationList[item].manifestation}')

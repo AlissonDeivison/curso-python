@@ -7,17 +7,8 @@
 """ Sistema de Ouvidoria da Universidade ABC """
 # ---------------------------------------------------------------------------
 # Imports
-import manifestation
-import functions
+from functions import saudacao, menu, case1, case2, case3, case4
 from manifestation import Manifastation
-from functions import saudacao
-from functions import menu
-from functions import case1
-from functions import case2
-from functions import case3
-from functions import case4
-from functions import case6
-
 # ---------------------------------------------------------------------------
 # Variables
 demonstrationList = []
@@ -29,39 +20,43 @@ while True:
     while int(userOption) <= 0 or int(userOption) > 7:
         print('Opção inválida')
         userOption = int(input('Escolha uma opção do menu: '))
-    match userOption: #Verificando opções do menu
-        case 1:
-            case1(demonstrationList)
-        case 2:
-            case2(demonstrationList)
-        case 3:
+    if userOption == 1:
+        case1(demonstrationList)
+    elif userOption == 2:
+        case2(demonstrationList)
+    elif userOption == 3:
             case3(demonstrationList)
-        case 4:
+    elif userOption == 4:
             case4(demonstrationList)
-        case 5:
-            nickName = input("Digite o nome do requisitante: ")
+    elif userOption == 5:
+        nickName = input("Digite o nome do requisitante: ")
+        manifestType = int(input("Digite o tipo (1 para reclamação, 2 para sugestão e 3 para elogio): "))
+        # ------ Validador da entrada do usuário
+        while manifestType < 1 or manifestType > 3:
+            print('Tipo de manifestação inválida')
             manifestType = int(input("Digite o tipo (1 para reclamação, 2 para sugestão e 3 para elogio): "))
-            # ------ Validador da entrada do usuário
-            while manifestType < 1 or manifestType > 3:
-                print('Tipo de manifestação inválida')
-                manifestType = int(input("Digite o tipo (1 para reclamação, 2 para sugestão e 3 para elogio): "))
-            # ------ Atribuindo novos valores a entrada type do usuário
-            if (manifestType) == 1:
-                manifestType = 'Reclamação'
-            elif (manifestType) == 2:
-                manifestType = 'Sugestão'
-            elif (manifestType) == 3:
-                manifestType = 'Elogio'
-            # ------
-            description = input("Digite a descrição: ")
-            newManifest = Manifastation() #Atribuindo a variável newManifest o objeto Manifastation()
-            newManifest.id = len(demonstrationList)+1
-            newManifest.nick = nickName
-            newManifest.type = manifestType
-            newManifest.manifestation = description
-            demonstrationList.append(newManifest) #Adicinando newManifest a lista demonstrationList
-        case 6:
-            case6(demonstrationList)
-        case 7:
-            print('Obrigado por usar nossos sistemas')
-            break
+        # ------ Atribuindo novos valores a entrada type do usuário
+        if (manifestType) == 1:
+            manifestType = 'Reclamação'
+        elif (manifestType) == 2:
+            manifestType = 'Sugestão'
+        elif (manifestType) == 3:
+            manifestType = 'Elogio'
+        # ------
+        description = input("Digite a descrição: ")
+        newManifest = Manifastation() #Atribuindo a variável newManifest ao objeto Manifastation()
+        newManifest.id = len(demonstrationList)+1
+        newManifest.nick = nickName
+        newManifest.type = manifestType
+        newManifest.manifestation = description
+        demonstrationList.append(newManifest) #Adicinando newManifest a lista de objetos demonstrationList
+    elif userOption == 6:
+        if len(demonstrationList) == 0:
+            print('Nenhuma manifestação registrada até o momento')
+        else:
+            numberProtocol = int(input('Informe o número do protocolo: '))
+            manifestacaoProcurada = demonstrationList[numberProtocol - 1]
+            print(f'N° do protocolo: {manifestacaoProcurada.id} | Nome: {manifestacaoProcurada.nick} | Tipo: {manifestacaoProcurada.type} | Manifestação: {manifestacaoProcurada.manifestation}')
+    elif userOption == 7:
+        print('Obrigado por usar nossos sistemas')
+        break
