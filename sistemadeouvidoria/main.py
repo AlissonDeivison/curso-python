@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 #----------------------------------------------------------------------------
 # Created By  : Alisson Deivison Silva Pereira
-# Created Date: 27/04/2022
-# version ='4.0'
+# Created Date: 09/05/2022
+# version ='5.0'
 # ---------------------------------------------------------------------------
 """ Sistema de Ouvidoria da Universidade ABC """
 # ---------------------------------------------------------------------------
 # Imports
-from functions import saudacao, menu, case1, case2, case3, case4
-from manifestation import Manifastation
+from functions import saudacao, menu
+from operacoesbd import *
+import mysql.connector
 # ---------------------------------------------------------------------------
-# Variables
-demonstrationList = []
-# ---------------------------------------------------------------------------
+conn = abrirBancoDados('localhost','root','-','ouvidoria')
 saudacao() #Mensagem de saudação ao usuário e menu
 while True:
     menu()  # Menu principal
@@ -21,16 +20,41 @@ while True:
         print('Opção inválida')
         userOption = int(input('Escolha uma opção do menu: '))
     if userOption == 1:
-        case1(demonstrationList)
+        sql = "SELECT * FROM manifestacoes"
+        resultado = listarBancoDados(conn, sql)
+        if len(resultado)==0:
+            print('Nenhuma manifestação registrada')
+        else:
+            for elemento in resultado:
+                print(f'Número do protocolo: {elemento[0]} - Requisitante: {elemento[1]} - Tipo: {elemento[2]} - Descrição {elemento[3]}')
     elif userOption == 2:
-        case2(demonstrationList)
+        sql = "SELECT * FROM manifestacoes where manifestType = 'Sugestão'"
+        resultado = listarBancoDados(conn, sql)
+        if len(resultado)==0:
+            print('Nenhuma manifestação registrada')
+        else:
+            for elemento in resultado:
+                print(f'Número do protocolo: {elemento[0]} - Requisitante: {elemento[1]} - Tipo: {elemento[2]} - Descrição {elemento[3]}')
     elif userOption == 3:
-            case3(demonstrationList)
+        sql = "SELECT * FROM manifestacoes where manifestType = 'Reclamação'"
+        resultado = listarBancoDados(conn, sql)
+        if len(resultado)==0:
+            print('Nenhuma manifestação registrada')
+        else:
+            for elemento in resultado:
+                print(f'Número do protocolo: {elemento[0]} - Requisitante: {elemento[1]} - Tipo: {elemento[2]} - Descrição {elemento[3]}')
     elif userOption == 4:
-            case4(demonstrationList)
+        sql = "SELECT * FROM manifestacoes where manifestType = 'Elogio'"
+        resultado = listarBancoDados(conn, sql)
+        if len(resultado)==0:
+            print('Nenhuma manifestação registrada')
+        else:
+            for elemento in resultado:
+                print(f'Número do protocolo: {elemento[0]} - Requisitante: {elemento[1]} - Tipo: {elemento[2]} - Descrição {elemento[3]}')
     elif userOption == 5:
         nickName = input("Digite o nome do requisitante: ")
-        manifestType = int(input("Digite o tipo (1 para reclamação, 2 para sugestão e 3 para elogio): "))
+        manifestType = int(input("Qual a categoria da manifestação?\n1 - Reclamação\n2 - Sugestão\n3 - Elogio\nEscolha: "))
+        description = input("Digite a descrição: ")
         # ------ Validador da entrada do usuário
         while manifestType < 1 or manifestType > 3:
             print('Tipo de manifestação inválida')
@@ -43,20 +67,23 @@ while True:
         elif (manifestType) == 3:
             manifestType = 'Elogio'
         # ------
-        description = input("Digite a descrição: ")
-        newManifest = Manifastation() #Atribuindo a variável newManifest ao objeto Manifastation()
-        newManifest.id = len(demonstrationList)+1
-        newManifest.nick = nickName
-        newManifest.type = manifestType
-        newManifest.manifestation = description
-        demonstrationList.append(newManifest) #Adicinando newManifest a lista de objetos demonstrationList
+        sql = "INSERT INTO manifestacoes(nickName,manifestType,description) VALUES (%s, %s, %s)"
+        dados = (nickName, manifestType, description)
+        insertNoBancoDados(conn,sql,dados)
+
     elif userOption == 6:
-        if len(demonstrationList) == 0:
-            print('Nenhuma manifestação registrada até o momento')
+        sql = "SELECT * FROM manifestacoes"
+        resultado = listarBancoDados(conn, sql)
+        if len(resultado) == 0:
+            print('Nenhuma manifestação registrada')
         else:
             numberProtocol = int(input('Informe o número do protocolo: '))
-            manifestacaoProcurada = demonstrationList[numberProtocol - 1]
-            print(f'N° do protocolo: {manifestacaoProcurada.id} | Nome: {manifestacaoProcurada.nick} | Tipo: {manifestacaoProcurada.type} | Manifestação: {manifestacaoProcurada.manifestation}')
+            sql = (f"SELECT * FROM manifestacoes where id = '{numberProtocol}'")
+            resultado = listarBancoDados(conn, sql)
+            for elemento in resultado:
+                print(f'Número do protocolo: {elemento[0]}\nRequisitante: {elemento[1]}\nTipo: {elemento[2]}\nDescrição: {elemento[3]}')
     elif userOption == 7:
+        encerrarBancoDados(conn)
         print('Obrigado por usar nossos sistemas')
         break
+
